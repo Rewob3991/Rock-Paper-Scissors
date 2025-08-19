@@ -48,11 +48,30 @@ function playRound(userChoice, computerChoice) {
 }
 
 
+
+
 const userChoice = prompt("ROCK, PAPER OR SCISSORS!?")
 const computerChoice = getComputerChoice()
+
+// create variables for computer score & human score
+// write code to increment winners score
+
+const userScore = 0  
+
+const computerScore = 0
+
+function roundResult() {
+
+    if (playRound === "You win!") {
+        userScore++; 
+    } else if (playRound === "You lose!") {
+        computerScore++;
+    } return "Your score - " + userScore + "Computer score - " + computerScore
+}
 
 
 
 console.log("You picked " + userChoice.toUpperCase())
 console.log(computerChoice)
 console.log(playRound(userChoice, computerChoice))
+console.log(roundResult())
