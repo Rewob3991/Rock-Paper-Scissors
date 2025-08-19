@@ -5,73 +5,91 @@ console.log("Hello World")
 
 
 
-
 function getComputerChoice() {
    const randomNum = Math.floor(Math.random() * 3) + 1; 
 
     if (randomNum === 1) {
-        return "The computer chose ROCK";
+        return "ROCK";
     } else if (randomNum === 2) {
-       return "The computer chose PAPER";
+       return "PAPER";
     } else  {
-       return "The computer chose SCISSORS";
+       return "SCISSORS";
     }
 
 }
 
 
-function playRound(userChoice, computerChoice) {
-    userChoice = userChoice.toUpperCase()
+function getUserChoice () {
+    return prompt("ROCK, PAPER OR SCISSORS!?")
 
-    if (userChoice === "ROCK" && computerChoice === "The computer chose ROCK") {
-        return "Its a draw!"
-    } else if (userChoice === "ROCK" && computerChoice === "The computer chose PAPER") {
-        return "You lose!"
-    } else if (userChoice === "ROCK" && computerChoice === "The computer chose SCISSORS") {
-        return "You win!"
-    } else if (userChoice === "PAPER" && computerChoice === "The computer chose ROCK") {
-        return "You Win!"
-    } else if (userChoice === "PAPER" && computerChoice === "The computer chose PAPER") {
-        return "Its a draw!"
-    } else if (userChoice === "PAPER" && computerChoice === "The computer chose SCISSORS") {
-        return "You lose!"
-    } else if (userChoice === "SCISSORS" && computerChoice === "The computer chose ROCK") {
-        return "You lose!"
-    } else if (userChoice === "SCISSORS" && computerChoice === "The computer chose PAPER") {
-        return "You win!"
-    } else if (userChoice === "SCISSORS" && computerChoice === "The computer chose SCISSORS") {
-        return "Its a draw!"
+}
+
+//create function to decide winnner
+
+    let userScore = 0  
+    let computerScore = 0
+
+    function checkWinner(userChoice, computerChoice) {
+    
+
+       
+
+
+    if (userChoice == computerChoice) {
+        return "Draw"
+    } else if (
+        (userChoice == "ROCK" && computerChoice == "SCISSORS") || 
+        (userChoice == "SCISSORS" && computerChoice == "PAPER") ||
+        (userChoice == "PAPER" && computerChoice == "ROCK")) {
+        return "Player"
     } else {
-        return "Thats not an option, pick again!"
+        return "Computer"
     }
 
-}
+
+
+    }  
+ 
+ //create function to start the game
+ //increment score depedning on winnner
+ //end game once score reaches 5   
+
+    function playGame () {
+        
+        let computerChoice = getComputerChoice();
+        let userChoice = getUserChoice().toUpperCase();
+        console.log("You picked " + userChoice);
+        console.log("The computer chose " + computerChoice);
+
+        function playRound(userChoice, computerChoice) { 
+        const result = checkWinner(userChoice, computerChoice)
+        if (result == "Draw") {
+            return `Its a Draw! User score - ${userScore}` + ` Computer score - ${computerScore}`;
+        } else if (result == "Player") {
+            userScore++; return `You win! ${userChoice} beats ${computerChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+        } else {
+            computerScore++; return `You lose! ${computerChoice} beats ${userChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+        }
+    }
+
+
+    console.log(playRound(userChoice, computerChoice))
+    console.log(scoreCheck())
+    } 
+    
+    function scoreCheck() {
+    if (userScore < 5 && computerScore < 5) {
+       playGame();
+    } else if (userScore == 5) {
+        return "You win"
+    } else if (computerScore == 5) {
+        return "You lose"
+    }
+
+    }
+    
 
 
 
 
-const userChoice = prompt("ROCK, PAPER OR SCISSORS!?")
-const computerChoice = getComputerChoice()
-
-// create variables for computer score & human score
-// write code to increment winners score
-
-const userScore = 0  
-
-const computerScore = 0
-
-function roundResult() {
-
-    if (playRound === "You win!") {
-        userScore++; 
-    } else if (playRound === "You lose!") {
-        computerScore++;
-    } return "Your score - " + userScore + "Computer score - " + computerScore
-}
-
-
-
-console.log("You picked " + userChoice.toUpperCase())
-console.log(computerChoice)
-console.log(playRound(userChoice, computerChoice))
-console.log(roundResult())
+console.log(playGame())
