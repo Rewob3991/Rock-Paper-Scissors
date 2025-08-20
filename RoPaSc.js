@@ -28,6 +28,7 @@ function getUserChoice () {
 
     let userScore = 0  
     let computerScore = 0
+    let round = 1
 
     function checkWinner(userChoice, computerChoice) {
     
@@ -52,38 +53,41 @@ function getUserChoice () {
  
  //create function to start the game
  //increment score depedning on winnner
- //end game once score reaches 5   
+ //end game once round reaches 5   
 
     function playGame () {
         
         let computerChoice = getComputerChoice();
         let userChoice = getUserChoice().toUpperCase();
+        console.log("Round " + round);
         console.log("You picked " + userChoice);
         console.log("The computer chose " + computerChoice);
 
         function playRound(userChoice, computerChoice) { 
-        const result = checkWinner(userChoice, computerChoice)
+        const result = checkWinner(userChoice, computerChoice);
         if (result == "Draw") {
-            return `Its a Draw! User score - ${userScore}` + ` Computer score - ${computerScore}`;
+           round++; return `Its a Draw! User score - ${userScore}` + ` Computer score - ${computerScore}`;
         } else if (result == "Player") {
-            userScore++; return `You win! ${userChoice} beats ${computerChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+            round++; userScore++; return `You win! ${userChoice} beats ${computerChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
         } else {
-            computerScore++; return `You lose! ${computerChoice} beats ${userChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+            round++; computerScore++; return `You lose! ${computerChoice} beats ${userChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
         }
     }
 
 
-    console.log(playRound(userChoice, computerChoice))
-    console.log(scoreCheck())
+    console.log(playRound(userChoice, computerChoice));
+    console.log(scoreCheck());
     } 
     
     function scoreCheck() {
-    if (userScore < 5 && computerScore < 5) {
+    if (round < 6) {
        playGame();
-    } else if (userScore == 5) {
-        return "You win"
-    } else if (computerScore == 5) {
-        return "You lose"
+    } else if (round == 6 && userScore > computerScore) {
+        return "You win the game!"; 
+    } else if (round == 6 && userScore < computerScore) {
+        return "You lost the game!";
+    } else if (round == 6 && userScore == computerScore) {
+        return "The game is a draw!";
     }
 
     }
