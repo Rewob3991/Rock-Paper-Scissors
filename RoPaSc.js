@@ -66,34 +66,37 @@ function getUserChoice () {
         function playRound(userChoice, computerChoice) { 
         const result = checkWinner(userChoice, computerChoice);
         if (result == "Draw") {
-           round++; return `Its a Draw! User score - ${userScore}` + ` Computer score - ${computerScore}`;
+           console.log(`Its a Draw! User score - ${userScore}` + ` Computer score - ${computerScore}`)
         } else if (result == "Player") {
-            round++; userScore++; return `You win! ${userChoice} beats ${computerChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+            userScore++; console.log(`You win! ${userChoice} beats ${computerChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`)
         } else {
-            round++; computerScore++; return `You lose! ${computerChoice} beats ${userChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`;
+            computerScore++; console.log(`You lose! ${computerChoice} beats ${userChoice}. User score - ${userScore}` + ` Computer score - ${computerScore}`)
         }
     }
 
 
-    console.log(playRound(userChoice, computerChoice));
-    console.log(scoreCheck());
+    playRound(userChoice, computerChoice);
+    scoreCheck();
     } 
     
     function scoreCheck() {
-    if (round < 6) {
+
+    for (i = 0; i < 5; i++) {
+        round++ 
+    if (round <= 5) {
        playGame();
     } else if (round == 6 && userScore > computerScore) {
-        return "You win the game!"; 
+        console.log("You win the game!") 
     } else if (round == 6 && userScore < computerScore) {
-        return "You lost the game!";
+        console.log("You lost the game!")
     } else if (round == 6 && userScore == computerScore) {
-        return "The game is a draw!";
+        console.log("The game is a draw!")
     }
 
-    }
+    }}
     
 
 
 
 
-console.log(playGame())
+(playGame())
