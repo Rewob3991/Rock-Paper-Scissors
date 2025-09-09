@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px;
+    padding: 20px;
+}
+
+button {
+    background-color: rgb(189, 187, 187);
+    border-radius: 250px;
+    padding: 10px;
+    min-width: 10vw;
+    cursor: pointer;
+    transition: backgoround-color;
+}
+
+#rock:hover {
+    background-color: rgb(122, 68, 23);
+}
+
+#paper:hover {
+    background-color: white;
+}
+
+#scissors:hover {
+    background-color: rgb(68, 68, 68);
+}
+
+.playAgain {
+    font-size: 2.5rem;
+    background-color: rgb(192, 0, 0);
+    transition: backgoround-color;
+}
+
+.playAgain:hover {
+    background-color: green;
+}
+
+.gameText {
+    text-align: center;
+}
+
+#score {
+    font-size: 2.5rem;
+    margin: 20px ;
+}
+
+#userChoice, #computerChoice  {
+    font-size: 1.5rem;
+}
+
+#roundResult, #gameResult {
+    font-size: 4rem;
+    margin: 20px;
+}
+
+.greenText {
+    color: green;
+}
+
+.redText {
+    color: red;
+}
+
+.blueText {
+    color: blue;
+}
+
